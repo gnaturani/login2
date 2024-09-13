@@ -1,0 +1,18 @@
+<div style="margin: 10px;">
+<p>
+  Errore di autorizzazione!
+</p>
+
+<div *ngFor="let message of messages">
+    <mat-error>
+      {{message}}
+    </mat-error>
+</div>
+
+<p>
+  Rieseguire il Login!
+</p>
+
+<button mat-raised-button (click)="goToLoginPage()" color="primary">vai alla pagine di login</button>
+
+</div>

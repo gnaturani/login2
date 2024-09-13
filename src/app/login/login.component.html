@@ -1,0 +1,143 @@
+
+
+<!--
+<asl-google-signin-button type="standard" size="medium"></asl-google-signin-button>
+<img src="{{ user?.photoUrl }}" referrerpolicy="no-referrer">
+<div>
+  <h4>{{ user?.name }}</h4>
+  <p>{{ user?.email }}</p>
+</div>
+-->
+
+
+<div layout-fill fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+  <div fxLayout="column" fxLayoutAlign="center center" style="width:380px;">
+
+    <mat-toolbar color="primary" style="background-color: rgb(206, 76, 0); border-radius: 10px;  z-index:10000;">
+      <mat-toolbar-row>
+        <img src="assets/ico_tonda.png" style="width:45px; padding-right:10px;">
+        <span>ParrocchiaCarpaneto.com</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-tab-group #maintab
+        style="width: 100%; background-color: white; border-radius: 10px; margin-top: -5px; z-index:1000;"
+      mat-stretch-tabs>
+      <mat-tab label="Login">
+
+        <mat-card class="example-card">
+
+          <mat-card-content>
+            <form class="example-form">
+              <table class="example-full-width" cellspacing="0" style="width:100%;">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width" style="width:100%;">
+                      <input matInput placeholder="Email" [(ngModel)]="username" name="username" required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width" style="width:100%;">
+                      <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password"
+                        required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </form>
+            <mat-error>{{loginError}}</mat-error>
+          </mat-card-content>
+          <mat-card-actions fxLayout="column" fxLayoutAlign="center start">
+
+              <button [style.display]="!showSpinnerLogin ? 'block' : 'none'" style="width:100%; background-color: rgb(206, 76, 0); color: white;"
+              mat-button (click)="startLogin()" color="primary">login</button>
+
+              <br>
+
+              <div style="width:100%; height: 70px; overflow: hidden; " fxLayoutAlign="center center">
+                <asl-google-signin-button type="standard" size="medium" logo_alignment="center" width="400"></asl-google-signin-button>
+              </div>
+
+              <br>
+              <!--
+            <br><br>
+
+            <button [style.display]="!showSpinnerLogin ? 'block' : 'none'"
+                style="width:100%; background-color: rgb(250, 186, 3); color: black; margin:0px;"
+                mat-button (click)="switchToRegistration(maintab)" color="primary">recupera password</button>
+                -->
+
+            <mat-spinner [diameter]="24" [style.display]="showSpinnerLogin ? 'block' : 'none'"></mat-spinner>
+
+          </mat-card-actions>
+        </mat-card>
+
+      </mat-tab>
+
+      <mat-tab label="Registrati">
+
+        <mat-card class="example-card">
+
+          <mat-card-content>
+            <form class="example-form">
+              <table class="example-full-width" cellspacing="0" style="width:100%;">
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width" style="width:100%;">
+                      <input matInput type="email" placeholder="Email" [(ngModel)]="username" name="username" required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width" style="width:100%;">
+                      <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password"
+                        required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <mat-form-field class="example-full-width" style="width:100%;">
+                      <input matInput placeholder="Confirm Password" [(ngModel)]="password_c" type="password" name="password_c"
+                        required>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+            </form>
+            <mat-error>{{signupError}}</mat-error>
+            <mat-hint style="color: green">{{signupMessage}}</mat-hint>
+          </mat-card-content>
+          <mat-card-actions fxLayout="column" fxLayoutAlign="center start">
+
+              <button [style.display]="!showSpinnerSignup && displayRegButton ? 'block' : 'none'"
+                style="width:100%; background-color: rgb(250, 186, 3)"
+                mat-button (click)="startSignUp()"
+                [disabled]="password != password_c"
+
+                >registrati</button>
+
+                <br>
+              <button [style.display]="!showSpinnerSignup && displayRegButton ? 'block' : 'none'"
+                style="width:100%; background-color: rgb(206, 76, 0); color: white; margin:0px;"
+                mat-button (click)="startRememberPwd()" color="primary">password dimenticata</button>
+
+                <div style="text-align: center;" [style.display]="!showSpinnerSignup && displayRegButton ? 'block' : 'none'">
+                  <p style="font-size: 13px;">Per il recupero della password inserire la mail con cui ci si era registrati e poi premere il tasto qui sopra</p>
+                </div>
+
+              <mat-spinner [diameter]="24" [style.display]="showSpinnerSignup ? 'block' : 'none'"></mat-spinner>
+
+
+          </mat-card-actions>
+        </mat-card>
+
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </div>
+</div>

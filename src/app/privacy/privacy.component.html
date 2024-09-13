@@ -1,0 +1,54 @@
+<mat-toolbar style="background-color: rgb(206, 76, 0); color: white;" >
+  <mat-toolbar-row>
+    <img src="assets/ico_tonda.png" style="width:45px; padding-right:10px;">
+    <span fxHide.xs="true" fxHide.sm="true">AREA UTENTE: privacy</span>
+    <span class="example-spacer"></span>
+    <div fxLayout="column" fxLayoutAlign="end center">
+        <h6 style="line-height:18px;" fxHide.xs="true" fxHide.sm="true">{{shared.getUser().nome}}</h6>
+        <h6 style="line-height:18px;" fxHide.xs="true" fxHide.sm="true">{{shared.getUser().cognome}}</h6>
+    </div>
+    <span class="spacer"></span>
+    <button mat-mini-fab style="background-color: rgb(250, 186, 3);" (click)="goToHome()">
+      <mat-icon aria-label="icon-button">home</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container" style="padding:10px;">
+
+  <div fxLayout="column" fxLayoutAlign="start center wrap">
+
+
+    <div [innerHTML]="privacyText" style="max-width:700px;">
+    </div>
+
+     <p>
+      Per continuare è necessario confermare di aver preso visione delle norme relative alla privacy.
+     </p>
+
+     <p fxHide.xs="true" fxHide.sm="true">
+        <mat-slide-toggle class="wrap" (change)="changeAccept($event)"
+          color="primary" [checked]="shared.getUser().privacy_accepted">
+          <p class="wrap">Dichiaro di aver letto e accettato le norme relative alla privacy</p>
+        </mat-slide-toggle>
+     </p>
+
+     <p fxHide.md="true" fxHide.lg="true">
+      <br>
+      <mat-slide-toggle class="wrap" (change)="changeAccept($event)"
+        color="primary" [checked]="shared.getUser().privacy_accepted">
+        <p class="wrap">Dichiaro di aver letto <br> e accettato <br> le norme relative alla privacy</p>
+      </mat-slide-toggle>
+      <br>
+      <br>
+   </p>
+
+     <div style="width:100%" fxLayoutAlign="end" *ngIf="shared.getUser().privacy_accepted">
+        <button color="primary" mat-flat-button (click)="savePrivacyAndGoOn()">
+          avanti
+        </button>
+     </div>
+
+  </div>
+
+</div>
